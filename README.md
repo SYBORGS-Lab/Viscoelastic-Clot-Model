@@ -3,7 +3,7 @@ This is the repository for the model developed and proposed in the paper: "Quick
 
 # System Requirements
 ## Hardware Requirements
-This model only requires a standard computer with enough RAM to support in-memory operations.
+This model only requires a standard computer with enough RAM to support in-memory operations. Code was run with 16 GB of RAM.
 
 ## Software Requirements
 Running the model code requires MATLAB R2021a or newer (recommendation). Install MATLAB according to MathWorks installation guide [here](https://www.mathworks.com/help/install/install-products.html).
