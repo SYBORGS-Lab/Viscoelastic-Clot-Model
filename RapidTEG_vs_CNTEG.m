@@ -1,14 +1,13 @@
 %Rapid TEG and CN TEG Comparison Group
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clc; clear; clf;
 %% Import Data
 
 % Citrated Rapid: R Time, Angle, MA, LY30
 % Citrated Functional Fibrinogen: R Time, Angle, MA, TMA, LY30, CL30, FLEV
 % Citrated Native: R Time, K Time, Angle, MA, TMA, LY30, CL30
-[COMBAT_TEG_Exp, Header_TEG_Exp]=xlsread('Dataset2','Dataset6CN','B1:S102');
+[COMBAT_TEG_Exp, Header_TEG_Exp]=xlsread('Dataset2','Dataset6CN','B1:S102'); 
 %Platelet count
-[LAB_Platelet, ~]=xlsread('Dataset2','Dataset6CN','U4:U102');
+[LAB_Platelet, ~]=xlsread('Dataset2','Dataset6CN','U4:U102'); 
 
 % Divide up the data
 DATA_FF_CN=COMBAT_TEG_Exp(:,[5:18]);
@@ -25,7 +24,7 @@ MarkSIze=10;
 figure(3)
 clf
 xDataVal=DATA_CN(:,4);
-yDataVal=DATA_RapidTEG(:,3);
+yDataVal=DATA_RapidTEG(:,3);  
 subplot(2,2,1)
 plot(xDataVal,yDataVal,'k^','MarkerSize',MarkSIze,'MarkerFaceColor',[0 0.4470 0.7410])
 xlabel('CN TEG'); ylabel('Rapid TEG'); title('Maximum Amplitude')
@@ -51,7 +50,7 @@ set(gca,'FontName','Helvetica','FontSize',FontSizeNum)
 
 %fig 2 - R Time
 xDataVal=DATA_CN(:,1);
-yDataVal=DATA_CN(:,1)./DATA_RapidTEG(:,1);
+yDataVal=DATA_CN(:,1)./DATA_RapidTEG(:,1); 
 subplot(2,2,2)
 RD=find(xDataVal>14);
 yDataVal(RD)=[];
@@ -76,10 +75,10 @@ set(gca,'FontName','Helvetica','FontSize',FontSizeNum)
 
 %fig 3 - LY30
 xDataVal=DATA_CN(:,6);
-yDataVal=DATA_RapidTEG(:,4);
+yDataVal=DATA_RapidTEG(:,4); 
 subplot(2,2,3)
 plot(xDataVal,yDataVal,'ko','MarkerSize',MarkSIze,'MarkerFaceColor',[0.4660 0.6740 0.1880])
-xlabel('CN TEG'); ylabel('Rapid TEG'); title('Ly30')
+xlabel('CN TEG'); ylabel('Rapid TEG'); title('Ly30') 
 y1=xDataVal;
 hold on; plot(xDataVal,y1,'r')
 R2_Ly30=RSquaredValue(yDataVal,y1)
@@ -97,12 +96,12 @@ set(gca,'FontName','Helvetica','FontSize',FontSizeNum)
 %fig 4 - Alpha Angle
 subplot(2,2,4)
 xDataVal=DATA_CN(:,3);
-yDataVal=DATA_RapidTEG(:,2);
+yDataVal=DATA_RapidTEG(:,2);  
 RD=find(yDataVal>60 & xDataVal<40);
 yDataVal(RD)=[];
 xDataVal(RD)=[];
 plot(xDataVal,yDataVal,'ks','MarkerSize',MarkSIze,'MarkerFaceColor',[0.4940 0.1840 0.5560])
-xlabel('CN TEG'); ylabel('Rapid TEG'); title('\alpha Angle')
+xlabel('CN TEG'); ylabel('Rapid TEG'); title('\alpha Angle') 
 
 %linear fit
 lin_func_eq=@(a,x) a(1).*x+a(2);

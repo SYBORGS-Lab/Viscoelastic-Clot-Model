@@ -1,5 +1,4 @@
-% TEG Whole blood fits reconstruction
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
+% TEG Whole blood fits reconstruction 
 clc; clear; clf;
 %% Import Data
 
@@ -14,7 +13,7 @@ figure(1)
 plot(TEG_WB_experiment_time_min,TEG_exp(:,1),TEG_WB_experiment_time_min,TEG_exp(:,11),'LineWidth',3)
 legend('Trauma sample 1','Trauma sample 2');
 ax = gca;
-ax.FontSize = 20;
+ax.FontSize = 20; 
 grid on
 box on
 xlabel('Time [min]')

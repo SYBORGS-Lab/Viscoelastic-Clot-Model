@@ -1,22 +1,21 @@
 function [res,fit_param_factor_chosen,i_chosen, fit_param_sorted] = GreedyLSQ(Coefficients,param)
 close all; clc;
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 
 % format long e
 NumFac=size(Coefficients,2);
 options = optimset('MaxFunEvals',1e6,'MaxIter',1e6,'TolFun',1e-9,'TolX',1e-9);
 
-%GENERAL
+%GENERAL 
 
 %first factor
 i_chosen=0;
-for i=1:NumFac
+for i=1:NumFac 
     if min((i ~= i_chosen)) == 1
         param_0 = ones(2,1);
         Chosen_factor=Coefficients(:,i);
         [fit_param_factors ,res_fit_param] = lsqcurvefit(@fit_param_model,param_0,[Chosen_factor],param,[],[],options) ;
         res_fit_param_norm(i)=res_fit_param ;
-        fit_param_factors_all(:,i)=fit_param_factors;
+        fit_param_factors_all(:,i)=fit_param_factors; 
     end
 end
 
@@ -24,15 +23,15 @@ end
 fit_param_factor_chosen=fit_param_factors_all(:,i_t);
 i_chosen=i_t;
 
-for j=1:NumFac-1
+for j=1:NumFac-1 
     clear fit_param_factors_all
-    for i=1:NumFac
+    for i=1:NumFac   
         if min((i ~= i_chosen)) == 1
             param_0 = [fit_param_factor_chosen;1];
             Chosen_factor=Coefficients(:,i);
             [fit_param_factors ,res_fit_param] = lsqcurvefit(@fit_param_model,param_0,[Coefficients(:,i_chosen), Chosen_factor],param,[],[],options) ;
             res_fit_param_norm(i)=res_fit_param ;
-            fit_param_factors_all(:,i)=fit_param_factors;
+            fit_param_factors_all(:,i)=fit_param_factors; 
         end
     end
 
@@ -45,10 +44,10 @@ end
 res=res';
 
 
-for i=1:NumFac
-    %sorts the factor coeff based on the factor_tag
-    fit_param_sorted(i_chosen(i),1)=fit_param_factor_chosen(i+1);
-
+for i=1:NumFac 
+    %sorts the factor coeff based on the factor_tag 
+    fit_param_sorted(i_chosen(i),1)=fit_param_factor_chosen(i+1); 
+    
 end
 
 

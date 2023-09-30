@@ -1,0 +1,14 @@
+Figure:
+2A - TEG_WB_Trauma_Visualization
+3A - NormalPlasmaPlots
+3B - NormalPlasmaPlots
+4B - TEG_Plasma_model_Validation5normal
+5A - TEG_Plasma_model_Validation5normal
+5C - TEG_FF_Fibrinogen
+5D - TEG_FF_Fibrinogen
+6A - TEG_WB_estimation6Param
+7A - TEG_WB_model_Validation_using5normal
+7C - PlotGen_FitVsProperties
+8A-D - TEG_PlateletMapping
+9A-D - RapidTEG_vs_CNTEG
+10B - Maxwell_Model_plot

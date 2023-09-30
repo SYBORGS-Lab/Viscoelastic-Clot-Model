@@ -1,5 +1,4 @@
 %% 10 Normal Sample Data
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clc; clear; clf;
 
 %% Import Data

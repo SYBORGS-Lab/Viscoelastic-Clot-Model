@@ -1,7 +1,5 @@
 %% Plot of the Maxwell model moduli
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clf;
-
 
 f=linspace(0,10,1001);
 E1=1*(f.^2)./(f.^2+1);

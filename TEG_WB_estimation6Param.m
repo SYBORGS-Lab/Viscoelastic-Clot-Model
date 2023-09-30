@@ -1,5 +1,4 @@
-% TEG Whole blood curve estimation
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
+% TEG Whole blood curve estimation  
 clc; clear; clf;
 
 %% Import Data
@@ -17,10 +16,10 @@ WB_Fit_Par=TEG_WB_Fit_Parameters([1:5,7,11,13:15,20:24],:);   %Unreasonable Ly30
 WB_Factors=TEG_WB_Factor_Concentration([1:5,7,11,13:15,20:24],:);
 TEG_exp = TEG_WB_experiment_data(:,[1:5,7,11,13:15,20:24]);
 
-%% Linear regressions
+%% Linear regressions 
 Regression_weight=zeros(12,6);
 
-% Kp1
+% Kp1 
 md1=fitlm(WB_Factors(:,1:8),WB_Fit_Par(:,1));
 Regression_weight(1:9,1)=md1.Coefficients.Estimate;
 eval1=[ones(length(WB_Factors),1),WB_Factors(:,1:8)]*Regression_weight(1:9,1);
@@ -80,18 +79,18 @@ figure(1)
 clf
 skip=0;
 
-for count=1:15
+for count=1:15 
     k_est_B=TEG_model_eval_Param(count,:);
     WBTEG_sys_est_B= tf(k_est_B(2),[k_est_B(1) 1 0],'InputDelay',k_est_B(3)) + tf(-k_est_B(5),[k_est_B(4) 1 0],'InputDelay',k_est_B(6));
     Y_est_TEG=lsim(WBTEG_sys_est_B,tissuefactor,T) ;
     [Y_est_peak,i_m]=max(Y_est_TEG./2);
     AUC_est=trapz(T,Y_est_TEG./2);
-
+    
     Y_exp = TEG_exp(:,count) ;
     [Y_exp_peak,i_m]=max(Y_exp./2);
     T_exp_peak= TEG_WB_experiment_time_min(i_m) ;
     AUC_exp=trapz(T,Y_exp./2);
-
+    
     subplot(3,5,count-skip)
     plot(TEG_WB_experiment_time_min,Y_exp./2,'k','LineWidth',4)
     hold on
@@ -105,7 +104,7 @@ for count=1:15
     Rsq(count,1)=RSquaredValue(Y_exp./2,Y_est_TEG./2);
     str=['R^{2} = ', num2str(Rsq(count,1),'%0.3f')];
     text(18,15,str,'FontSize',20);
-
+    
     %Func_out=[TEG_R,TEG_K,TEG_alpha,TEG_MA,TEG_Ly30,TEG_MAtime]
     Func_out=TEG_Graph_Property_Identifier(T,Y_est_TEG,2);
     ParamTable_est(count,:)=[Y_est_peak,AUC_est,Func_out];

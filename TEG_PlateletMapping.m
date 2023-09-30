@@ -1,5 +1,4 @@
 %% Platelet Mapping
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clc; clear; clf;
 
 %% Import Data
@@ -7,9 +6,9 @@ clc; clear; clf;
 % Citrated Functional Fibrinogen: R Time, Angle, MA, TMA, LY30, CL30, FLEV
 % Citrated Native: R Time, K Time, Angle, MA, TMA, LY30, CL30
 % Platelet Mapping: MA FIB, MA ADP, % ADP Inhibition
-[COMBAT_TEG_Exp, Header_TEG_Exp]=xlsread('Dataset2','Dataset11','B1:R59');
+[COMBAT_TEG_Exp, Header_TEG_Exp]=xlsread('Dataset2','Dataset11','B1:R59'); 
 %Platelet count
-[LAB_Platelet, ~]=xlsread('Dataset2','Dataset11','S4:S59');
+[LAB_Platelet, ~]=xlsread('Dataset2','Dataset11','S4:S59'); 
 
 DATA_FF_CN_PLT=[COMBAT_TEG_Exp, LAB_Platelet];
 
@@ -96,7 +95,7 @@ RD=find(yAxisData>15 | yAxisData<0.3378*xAxisData-4);
 xAxisData(RD,:)=[];
 yAxisData(RD,:)=[];
 xDataVal=xAxisData;
-yDataVal=yAxisData;
+yDataVal=yAxisData; 
 hold on
 plot(xDataVal,yDataVal,'kd','MarkerSize',MarkSIze,'MarkerFaceColor',[0.8500 0.3250 0.0980])
 xlabel('Functional Fibrinogen'); ylabel('Platelet Mapping'); title('B: MA from Fibrin');
@@ -125,7 +124,7 @@ RD=find(yAxisData<5.0986*xAxisData-30);
 xAxisData(RD,:)=[];
 yAxisData(RD,:)=[];
 xDataVal=yAxisData;
-yDataVal=xAxisData;
+yDataVal=xAxisData; 
 hold on;
 plot(xDataVal,yDataVal,'ks','MarkerSize',MarkSIze,'MarkerFaceColor',[0.4940 0.1840 0.5560])
 xlabel('Uninhibited Platelet Count'); ylabel('Contribution to MA'); title('D: Uninhibited Platelet');
@@ -151,7 +150,7 @@ figure(1); subplot(2,2,3);
 xAxisData=(INH_Per);
 yAxisData=((MA_PLT_Thromb-MA_PLT_A)./(MA_PLT_Thromb))*100;
 xDataVal=xAxisData;
-yDataVal=yAxisData;
+yDataVal=yAxisData; 
 hold on;
 plot(xDataVal,yDataVal,'ko','MarkerSize',MarkSIze,'MarkerFaceColor',[0.4660 0.6740 0.1880])
 xlabel('% Inhibition'); ylabel('% MA Reduction'); title('C: ADP Inhibition');

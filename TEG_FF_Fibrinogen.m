@@ -1,13 +1,12 @@
 %% Functional Fibrinogen Plots
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clc; clear; clf;
 
 %% Import Data
 
 % Citrated Functional Fibrinogen: R Time, Angle, MA, TMA, LY30, CL30, FLEV
-[COMBAT_TEG_Exp, Header_TEG_Exp]=xlsread('Dataset2','Dataset6FF','F1:L66');
+[COMBAT_TEG_Exp, Header_TEG_Exp]=xlsread('Dataset2','Dataset6FF','F1:L66'); 
 % Fibrinogen Level
-FIBRINOGEN_LEVEL=xlsread('Dataset2','Dataset6FF','T4:T66');
+FIBRINOGEN_LEVEL=xlsread('Dataset2','Dataset6FF','T4:T66'); 
 
 DATA_FF_FIB=[COMBAT_TEG_Exp, FIBRINOGEN_LEVEL];
 %% Plots
@@ -40,7 +39,7 @@ subplot(1,2,2)
 xAxisData=DATA_FF_FIB(:,3)*5000./(100-DATA_FF_FIB(:,3));
 yAxisData=DATA_FF_FIB(:,8);
 xDataVal=xAxisData;
-yDataVal=yAxisData;
+yDataVal=yAxisData; 
 hold on
 plot(xDataVal,yDataVal,'kd','MarkerSize',MarkSIze,'MarkerFaceColor',[0.8500 0.3250 0.0980])
 xlabel('G_f'); ylabel('Fibrinogen Level');

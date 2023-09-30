@@ -1,5 +1,4 @@
 % TEG Whole blood curve validation
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clc; clear; clf;
 
 %% Import Data
@@ -14,7 +13,7 @@ TEG_WB_Fit_Parameters=xlsread('Dataset10','Fits','C3:H26');
 TEG_WB_Factor_Concentration=xlsread('Dataset10','Fits','I3:S26');
 
 TEG_WB_Validation_Exp=xlsread('Dataset8','TEGData','B2:F722');
-TEG_WB_Validation_Exp=TEG_WB_Validation_Exp(:,[2 1 5 3 4]); %correcting the order of samples
+TEG_WB_Validation_Exp=TEG_WB_Validation_Exp(:,[2 1 5 3 4]); %correcting the order of samples 
 TEG_WB_Validation_Exp_Time=xlsread('Dataset8','TEGData','A2:A722')./60; %time points
 
 % D-dimer, FII, FV, FVII, FVIII, FIX, FX, FXI, FXII, ATIII, PC, Fib
@@ -23,13 +22,13 @@ TEG_WB_Validation_CoagFact=xlsread('Dataset8','Parameters','C2:N6');
 WB_Fit_Par=TEG_WB_Fit_Parameters([1:5,7,11,13:15,20:24],:);   %Unreasonable Ly30, d-dimer
 WB_Factors=TEG_WB_Factor_Concentration([1:5,7,11,13:15,20:24],:);
 TEG_exp = TEG_WB_experiment_data(:,[1:5,7,11,13:15,20:24]);
-Validation_CoagFact=[TEG_WB_Validation_CoagFact(:,2:7),TEG_WB_Validation_CoagFact(:,10:12),TEG_WB_Validation_CoagFact(:,1)]; %missing platelet count
+Validation_CoagFact=[TEG_WB_Validation_CoagFact(:,2:7),TEG_WB_Validation_CoagFact(:,10:12),TEG_WB_Validation_CoagFact(:,1)]; %missing platelet count 
 
 
-%% Linear regressions
+%% Linear regressions 
 Regression_weight=zeros(12,6);
 
-% Kp1
+% Kp1 
 md1=fitlm(WB_Factors(:,1:8),WB_Fit_Par(:,1));
 Regression_weight(1:9,1)=md1.Coefficients.Estimate;
 eval1=[ones(length(WB_Factors),1),WB_Factors(:,1:8)]*Regression_weight(1:9,1);
@@ -87,11 +86,11 @@ clf;
 skip=0;
 
 for count=1:5
-
+    
     Val_Fact=Validation_CoagFact(count,:);
     TEG_model_eval_Param=[1,Val_Fact,268]*Regression_weight;
     k_est_B=TEG_model_eval_Param;
-
+    
     WBTEG_sys_est_B= tf(k_est_B(2),[k_est_B(1) 1 0],'InputDelay',k_est_B(3)) + tf(-abs(k_est_B(5)),[k_est_B(4) 1 0],'InputDelay',abs(k_est_B(6)));
     if count==2
             WBTEG_sys_est_B= tf(k_est_B(2),[k_est_B(1) 1 0],'InputDelay',k_est_B(3)) + tf(-abs(k_est_B(5))/4,[k_est_B(4) 1 0],'InputDelay',50);
@@ -102,12 +101,12 @@ for count=1:5
     Y_est_TEG=lsim(WBTEG_sys_est_B,tissuefactor,T) ;
     [Y_est_peak,i_m]=max(Y_est_TEG./2);
     AUC_est=trapz(T,Y_est_TEG./2);
-
+    
     Y_exp = TEG_WB_Validation_Exp(:,count) ;
     [Y_exp_peak,i_m]=max(Y_exp./2);
     T_exp_peak= TEG_WB_Validation_Exp_Time(i_m) ;
     AUC_exp=trapz(T,Y_exp./2);
-
+    
     figure(1)
     subplot(2,3,count-skip)
     plot(TEG_WB_Validation_Exp_Time,Y_exp./2,'k','LineWidth',4)
@@ -136,7 +135,7 @@ for count=1:5
     Prop_val=[Y_val_peak,T_MA_val,Delay_val,area_val];
     Prop_exp=[Y_exp_peak,T_MA_exp,Delay_exp,area_exp];
     error_val(count,:)=abs(Prop_val-Prop_exp)./Prop_exp*100;
-
+    
 end
 legend('Experiment','Estimation','location','southeast','Orientation','Horizontal')
 mean(Rsq);

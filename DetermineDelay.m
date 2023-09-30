@@ -1,5 +1,4 @@
 function Delay = DetermineDelay(Tcheck,MeasuredThrombin)
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 
 %first, look for the first data point below half of the thrombin peak
 

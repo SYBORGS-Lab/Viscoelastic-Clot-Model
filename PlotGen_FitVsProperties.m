@@ -1,8 +1,7 @@
 %% Plot of Fits versus TEG Parameters
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
 clc; clear; clf;
 
-%% Import Data
+%% Import Data 
 
 % Model Fit Parameters: [Kp1, Kn1, Kd1, Kp2, Kn2, Kd2]
 TEG_WB_6_parameters=xlsread('Dataset10','Fits','C3:H26');
@@ -22,7 +21,7 @@ R1 = zeros(4,1);
 R2 = zeros(4,1);
 
 % Kn1 vs MA
-figure(1);
+figure(1); 
 subplot(2,2,1)
 xAxisData=TEG_WB_6_parameters(:,2);
 yAxisData=TEG_24tra_MachProp(:,4);
@@ -47,7 +46,7 @@ set(gca,'FontName','Helvetica','FontSize',FontSizeNum)
 
 
 % Kd1 vs R time
-figure(1);
+figure(1); 
 subplot(2,2,2)
 xAxisData=TEG_WB_6_parameters(:,3);
 yAxisData=TEG_24tra_MachProp(:,1);
@@ -68,8 +67,8 @@ set(gca,'FontName','Helvetica','FontSize',FontSizeNum)
 
 
 % Kp1 vs alpha
-figure(1);
-subplot(2,2,3)
+figure(1); 
+subplot(2,2,3) 
 xAxisData=TEG_WB_6_parameters(:,1);
 yAxisData=TEG_24tra_MachProp(:,3);
 RD_1=find(yAxisData<60);
@@ -103,7 +102,7 @@ for cnt=1:24
 end
 
 % Degredation vs LY30
-figure(1);
+figure(1); 
 subplot(2,2,4)
 xAxisData=degredation;
 yAxisData=TEG_24tra_MachProp(:,5);

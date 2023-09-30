@@ -1,5 +1,4 @@
-%% Identifying Properties
-% ©Copyright 2023 University of Florida Research Foundation, Inc. All Commercial Rights Reserved.
+%% Identifying Properties 
 function TEG_Graph_parameters = TEG_Graph_Property_Identifier(T,Y_input,type)
 Y_TEG=Y_input/2;
 
@@ -21,14 +20,14 @@ TEG_K=time_20mm-TEG_R;
 
 % Alpha angle : speed of fibrin accumulation (53-72 degrees)
 dydx = gradient(Y_TEG(:)) ./ gradient(T(:));
-dydx2 = gradient(dydx(:)) ./ gradient(T(:));
+dydx2 = gradient(dydx(:)) ./ gradient(T(:)); 
 smDyDx=smoothdata(smoothdata(dydx2));
 aa=find(abs(smDyDx)<0.5);
 [~,bb]=min(smDyDx);
 data_id=aa(find(aa>bb,1));
 TEG_alpha=abs(atand(dydx(data_id)));
 
-% Maximum amplitude : Highest vertical amplitude of TEG (50-70 mm) - clot strength
+% Maximum amplitude : Highest vertical amplitude of TEG (50-70 mm) - clot strength 
 if type==1
 %Method 1
     [TEG_MA1,data_id]=max(Y_TEG);
